@@ -157,3 +157,4 @@ categories: [English]
 | A lot of the lower rungs on the ladder are particularly susceptible to automation through AI.                                                                            | 梯子上的很多低层工作特别容易被 AI 自动化。                                                                     |
 | AI is automation on steroids.                                                                                                                                            | AI 是强化版的自动化。                                                                                          |
 | Let’s take a quick tour of edX so you can get the most out of your course.                                                                                               | 让我们快速浏览一下 edX，以便你能最大限度地利用你的课程。                                                       |
+| This is one of the topics that has received quite a bit of attention in academia. | 这可能是学术界关注度相当高的一个话题。 |

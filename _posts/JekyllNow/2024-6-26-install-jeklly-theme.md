@@ -13,6 +13,7 @@ categories: [Jekyll]
 - comment system:
   - https://roife.github.io/posts/use-utterances-for-blog-comment/
   - https://mikeooye.github.io/posts/enable-comment-utterances/
+- mathjax: https://github.com/cotes2020/jekyll-theme-chirpy/pull/1670
 
 ## doc：
 
