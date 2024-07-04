@@ -26,7 +26,7 @@ just like the following image, we have multiple features, and multiple value for
 
 At here, we use the `dot project`, which is a method of computing in which we use a vector (a list of numbers) to represent a set of data.
 
-<img src="/assets/images/meachine-learning/linear-regression/15-dot-project-demo.gif" width=800>
+![15-dot-project-demo](/assets/images/meachine-learning/linear-regression/15-dot-project-demo.gif)
 
 And, we archieve that by `Numpy`, it's a powerful library for scientific computing.
 
