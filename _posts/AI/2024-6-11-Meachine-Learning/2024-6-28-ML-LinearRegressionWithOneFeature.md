@@ -193,7 +193,7 @@ So just to recap, as we get nearer a local minima gradient descent will automati
 
 [linear regression model](https://github.com/yc913344706/ai-code/blob/main/LinearRegression/population_profit.ipynb)
 
-## Research Questions
+## Wait Research Questions
 
 some questions not answered yet, because our purpose is to use AI:
 
