@@ -90,6 +90,6 @@ just like the following picture, it obviously that the straight line is not a go
 
 ![07-polynomial-regression-intuition](/assets/images/meachine-learning/feature-engineering/07-polynomial-regression-intuition.png)
 
-but how to find a good order?
+but how to find a good order? let's see the following:
 
-MARK: wait to complete.
+- [feature mapping]({% link _posts/AI/2024-6-11-Meachine-Learning/2024-7-7-practical-advices.md %})
