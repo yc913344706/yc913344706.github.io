@@ -2,7 +2,7 @@
 layout: post
 title: 【Meachine Learning】05 practical advices
 categories: [AI, Meachine Learning]
-tags: [convergence, learning curve, learning rate]
+tags: [convergence, learning curve, learning rate, underfitting, overfitting, regularization, high bias, high variance, feature mapping]
 math: true
 ---
 

@@ -2,7 +2,7 @@
 layout: post
 title: 【Meachine Learning】04 About Feature Engineering
 categories: [AI, Meachine Learning]
-tags: [Feature Engineering]
+tags: [Feature scaling, polynomial features]
 math: true
 ---
 

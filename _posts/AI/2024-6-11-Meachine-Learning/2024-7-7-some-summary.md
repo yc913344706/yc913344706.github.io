@@ -2,7 +2,7 @@
 layout: post
 title: 【Meachine Learning】07 some summary of Meachine Learning
 categories: [AI, Meachine Learning]
-tags: [summary]
+tags: [demo summary]
 math: true
 ---
 
