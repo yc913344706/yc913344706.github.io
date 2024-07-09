@@ -103,9 +103,16 @@ MARK: wait to complete.
 
 what is regularization? it looks like we want to penalize the model for having too many large weights with the parameter `lambda`.
 
+like the following img, we add a parameter `lambda` to the cost function. the larger the lambda, if we want minimum the cost function, then the weights will be smaller.
+
 ![regularization intuition](/assets/images/meachine-learning/practical-advice/05-against-overfitting03.png)
 
-cost function
+So, when lambda:
+
+- too big: model will underfit;
+- too small: model will overfit;
+
+**cost function**
 
 - linear regression
   - without regularization: $$J(w,b) = \frac{1}{2m} \sum\limits_{i = 0}^{m-1} (f_{w,b}(x^{(i)}) - y^{(i)})^2$$ 
@@ -115,7 +122,8 @@ cost function
   - without regularization: $$ J(\mathbf{w}.b) = \frac{1}{m} \sum\limits_{i=0}^{m-1} \left[ (-y^{(i)} \log\left(f_{\mathbf{w},b}\left( \mathbf{x}^{(i)} \right) \right) - \left( 1 - y^{(i)}\right) \log \left( 1 - f_{\mathbf{w},b}\left( \mathbf{x}^{(i)} \right) \right)\right]$$
   - with regularization: $$J(\mathbf{w},b) = \frac{1}{m}  \sum\limits_{i=0}^{m-1} \left[ -y^{(i)} \log\left(f_{\mathbf{w},b}\left( \mathbf{x}^{(i)} \right) \right) - \left( 1 - y^{(i)}\right) \log \left( 1 - f_{\mathbf{w},b}\left( \mathbf{x}^{(i)} \right) \right) \right] + \frac{\lambda}{2m}  \sum\limits_{j=0}^{n-1} w_j^2$$
 
-gradient descent:
+**gradient descent**
+
 - linear regression and logistic regression:
   - gradient descent approach: 
     - $$\begin{align*}& \text{repeat until convergence:} \; \lbrace \newline \; & b := b -  \alpha \frac{\partial J(\mathbf{w},b)}{\partial b} \newline       \; & w_j := w_j -  \alpha \frac{\partial J(\mathbf{w},b)}{\partial w_j}  \; & \text{for j := 0..n-1}\newline & \rbrace\end{align*}$$
@@ -126,6 +134,9 @@ gradient descent:
   - linear regression: $$f_{\mathbf{w},b}(\mathbf{x}^{(i)}) = \mathbf{w} \cdot \mathbf{x}^{(i)}+b$$
   - logistic regression: $$f_{\mathbf{w},b}(\mathbf{x}^{(i)}) = \frac{1}{1+e^{-(\mathbf{w} \cdot \mathbf{x^{(i)}} + b)}}$$
 
+**code demo**
+
+- [logistic regression demo for regularization](https://github.com/yc913344706/ai-code/blob/main/LogisticRegression/microchip_QA.ipynb)
 
 ### 4.6 how to solve underfitting/high bias?
 

@@ -27,3 +27,4 @@ math: true
 | features                            | target                          | code                                                                                                                                 |
 | ----------------------------------- | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
 | - Exam 1 score <br/> - Exam 2 score | - Admitted <br/> - Not admitted | [predict admission chance by exam score](https://github.com/yc913344706/ai-code/blob/main/LogisticRegression/admission_chance.ipynb) |
+| - test 1 score <br/> - test 2 score | - microchip accept <br/> - microchip reject             | [predict microchip inspect result by test score](https://github.com/yc913344706/ai-code/blob/main/LogisticRegression/microchip_QA.ipynb)         |

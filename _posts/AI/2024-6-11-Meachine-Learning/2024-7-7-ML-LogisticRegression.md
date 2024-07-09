@@ -92,4 +92,5 @@ the gradient descent is the same as linear regression.
 
 ## 5 demo code for logistic regression
 
-[demo code: admission chance](https://github.com/yc913344706/ai-code/blob/main/LogisticRegression/admission_chance.ipynb)
+- [demo code: admission chance](https://github.com/yc913344706/ai-code/blob/main/LogisticRegression/admission_chance.ipynb)
+- [logistic regression demo for regularization](https://github.com/yc913344706/ai-code/blob/main/LogisticRegression/microchip_QA.ipynb)
