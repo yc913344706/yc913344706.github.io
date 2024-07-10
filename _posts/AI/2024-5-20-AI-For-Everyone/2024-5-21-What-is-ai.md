@@ -73,7 +73,7 @@ The idea of supervised learning has been around for many decades, but it's reall
 
 ![05-why-machine-learning-take-off-now](/assets/images/ai-for-everyone/01-what-is-ai/05-ai-why-now.png)
 
-> In fact, it was also this type of scaling increasing the amount of data and the size of the models that was instrumental to the recent breakthroughs in training generative AI systems, including the large language models that we discussed just now.
+> In fact, it was also this type of scaling `increasing the amount of data` and the `size of the models` that was instrumental to the recent breakthroughs in training generative AI systems, including the large language models that we discussed just now.
 
 ## 4 data
 
