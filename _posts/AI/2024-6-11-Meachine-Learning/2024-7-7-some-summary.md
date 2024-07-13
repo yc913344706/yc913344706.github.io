@@ -2,16 +2,16 @@
 layout: post
 title: 【Meachine Learning】07 some summary of Meachine Learning
 categories: [AI, Meachine Learning]
-tags: [demo summary]
+tags: [demo summary, numpy operation, sympy]
 math: true
 ---
 
 ## 1 cost function
 
-| model               | cost function               | formula                                                                                                                                                                                                                                 |
-| ------------------- | --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| linear regression   | squared error cost function | $$J(w,b) = \frac{1}{2m} \sum\limits_{i = 0}^{m-1} (f_{w,b}(x^{(i)}) - y^{(i)})^2$$                                                                                                                                                      |
-| logistic regression | loss function               | - $$loss(f_{\mathbf{w},b}(\mathbf{x}^{(i)}), y^{(i)}) = (-y^{(i)} \log\left(f_{\mathbf{w},b}\left( \mathbf{x}^{(i)} \right) \right) - \left( 1 - y^{(i)}\right) \log \left( 1 - f_{\mathbf{w},b}\left( \mathbf{x}^{(i)} \right) \right)$$ <br/> - $$J(\mathbf{w},b) = \frac{1}{m}  \sum\limits_{i=0}^{m-1} \left[ -y^{(i)} \log\left(f_{\mathbf{w},b}\left( \mathbf{x}^{(i)} \right) \right) - \left( 1 - y^{(i)}\right) \log \left( 1 - f_{\mathbf{w},b}\left( \mathbf{x}^{(i)} \right) \right) \right] + \frac{\lambda}{2m}  \sum\limits_{j=0}^{n-1} w_j^2$$ |
+| model               | cost function               | Neural Network Name |
+| ------------------- | --------------------------- | ------------------- |
+| linear regression   | squared error cost function |  [MeanSquaredError](https://www.tensorflow.org/api_docs/python/tf/keras/losses/MeanSquaredError)                   |
+| logistic regression | loss function               |  [BinaryCrossentropy](https://www.tensorflow.org/api_docs/python/tf/keras/losses/BinaryCrossentropy)                   |
 
 ## 2 numpy operation
 
@@ -43,11 +43,9 @@ Boardcast VectorAdd:
 
 ![Numpy Boardcast VectorAdd](/assets/images/meachine-learning/numpy/C2_W1_Assign1_VectorAdd.PNG)
 
-
 ### 2.3 slice
 
 - [numpy array slice](https://blog.csdn.net/weixin_43629813/article/details/101122997)
-
 
 ## 3 demo for different algorithms
 
@@ -60,13 +58,21 @@ Boardcast VectorAdd:
 
 ### 3.2 logistic regression demo
 
-| features                            | target                          | code                                                                                                                                 |
-| ----------------------------------- | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| - Exam 1 score <br/> - Exam 2 score | - Admitted <br/> - Not admitted | [predict admission chance by exam score](https://github.com/yc913344706/ai-code/blob/main/LogisticRegression/admission_chance.ipynb) |
-| - test 1 score <br/> - test 2 score | - microchip accept <br/> - microchip reject             | [predict microchip inspect result by test score](https://github.com/yc913344706/ai-code/blob/main/LogisticRegression/microchip_QA.ipynb)         |
+| features                            | target                                      | code                                                                                                                                     |
+| ----------------------------------- | ------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| - Exam 1 score <br/> - Exam 2 score | - Admitted <br/> - Not admitted             | [predict admission chance by exam score](https://github.com/yc913344706/ai-code/blob/main/LogisticRegression/admission_chance.ipynb)     |
+| - test 1 score <br/> - test 2 score | - microchip accept <br/> - microchip reject | [predict microchip inspect result by test score](https://github.com/yc913344706/ai-code/blob/main/LogisticRegression/microchip_QA.ipynb) |
 
 ### 3.3 neural network demo
 
-| scenario | code|
-| ---  | --- |
-| recognize the handwritten digit | [binary_handwritten_digit_recognization](https://github.com/yc913344706/ai-code/blob/main/NeuralNetwork/binary_handwritten_digit_recognization.ipynb) |
+| scenario | code |
+| --- | --- |
+| recognize the handwritten digit | - [binary_handwritten_digit_recognization](https://github.com/yc913344706/ai-code/blob/main/NeuralNetwork/binary_handwritten_digit_recognization.ipynb) <br/> - [multiple_handwritten_digit_recognization](https://github.com/yc913344706/ai-code/blob/main/NeuralNetwork/multiple_handwritten_digit_recognization.ipynb)|
+
+## 4 derivative
+
+遇到复杂计算找python绝对不让你失望，sympy是一个Python的科学计算库，用一套强大的符号计算体系完成诸如多项式求值、求极限、解方程、求积分、微分方程、级数展开、矩阵运算等等计算问题。
+
+doc:
+
+- https://blog.csdn.net/cj151525/article/details/95756847

@@ -47,11 +47,11 @@ Some of the biological motivations still remain in the way we think about artifi
 
 So how does the brain work?
 
-![01-demo-for-biology-nerual](/assets/images/meachine-learning/nerual-network/01-demo-for-biology-nerual.png)
+![01-demo-for-biology-neural](/assets/images/meachine-learning/neural-network/01-demo-for-biology-neural.png)
 
 let's analogy the two neuron.
 
-![02-analogy-between-two-neuron](/assets/images/meachine-learning/nerual-network/02-analogy-between-two-neuron.png)
+![02-analogy-between-two-neuron](/assets/images/meachine-learning/neural-network/02-analogy-between-two-neuron.png)
 
 As we saw on the previous slide, the neuron has different inputs.
 
@@ -78,7 +78,7 @@ artificial neuron
 
 First, illustrate neuron concept by demand prediction with one neuron.
 
-![03-intuition01-demand-prediction-1-neuron](/assets/images/meachine-learning/nerual-network/03-intuition01-demand-prediction-1-neuron.png)
+![03-intuition01-demand-prediction-1-neuron](/assets/images/meachine-learning/neural-network/03-intuition01-demand-prediction-1-neuron.png)
 
 As we can see, this one neuron only do one thing:
 
@@ -90,7 +90,7 @@ So, this is a simple neuron.
 
 ### 2.3 intuition by demo: demand prediction with multiple neurons
 
-![04-intuition02-demand-prediction-multiple-neurons](/assets/images/meachine-learning/nerual-network/04-intuition02-demand-prediction-multiple-neurons.png)
+![04-intuition02-demand-prediction-multiple-neurons](/assets/images/meachine-learning/neural-network/04-intuition02-demand-prediction-multiple-neurons.png)
 
 Let's take a look at the multiple neurons.
 
@@ -107,13 +107,13 @@ output of every one neuron is called **activation**, and the activation function
 
 And, if we say every neuron can have some relationship with every neural in the previous layer, then we can connect every neuron in the hidden layer with every neuron in the input layer, and, we can use: **vectorized computation**, it looks like what we saw in the previous blog.
 
-![04-intuition03-vector-of-layer-relation](/assets/images/meachine-learning/nerual-network/04-intuition03-vector-of-layer-relation.png)
+![04-intuition03-vector-of-layer-relation](/assets/images/meachine-learning/neural-network/04-intuition03-vector-of-layer-relation.png)
 
 So, this is a multiple neurons. and all the input featuers are called **input layer**, the output is called **output layer**, all the layers in between are called **hidden layer**.
 
 > hidden layer can be more than one.
 
-![04-intuition04-multiple-hidden-layers](/assets/images/meachine-learning/nerual-network/04-intuition04-multiple-hidden-layers.png)
+![04-intuition04-multiple-hidden-layers](/assets/images/meachine-learning/neural-network/04-intuition04-multiple-hidden-layers.png)
 
 One note, even though I previously described this neural network as computing affordability, awareness, and perceived quality, one of these really nice properties of a neural network is when you train it from data, you don't need to go in to explicitly decide what other features, such as affordability and so on, that the neural network should compute instead or figure out all by itself what are the features it wants to use in this hidden layer.
 
@@ -129,13 +129,13 @@ So, let's take a look at the face recognition.
 
 let's say one image is 1000x1000 pixels, if the image is black and white, then every pixel can be represented by one number, and the total number of pixels is 1000x1000=1,000,000.
 
-![04-intuition05-demo1-face-recognition01-vectorization](/assets/images/meachine-learning/nerual-network/04-intuition05-demo1-face-recognition01-vectorization.png)
+![04-intuition05-demo1-face-recognition01-vectorization](/assets/images/meachine-learning/neural-network/04-intuition05-demo1-face-recognition01-vectorization.png)
 
 and we store the 1 million numbers in a vector as the **input layer**.
 
 and we can use a neural network to predict the probability of this image is a certain person.
 
-![04-intuition05-demo1-face-recognition02-hidden-layers-demo](/assets/images/meachine-learning/nerual-network/04-intuition05-demo1-face-recognition02-hidden-layers-demo.png)
+![04-intuition05-demo1-face-recognition02-hidden-layers-demo](/assets/images/meachine-learning/neural-network/04-intuition05-demo1-face-recognition02-hidden-layers-demo.png)
 
 It turns out that when you train a system like this on a lot of pictures of faces and you peer at the different neurons in the hidden layers to figure out what they may be computing this is what you might find.
 
@@ -161,7 +161,7 @@ For example, each of these little square boxes is a visualization of what that n
 
 ### 2.5 intuition by demo: car recognition
 
-![04-intuition05-demo2-car-recognition-hidden-layers-demo](/assets/images/meachine-learning/nerual-network/04-intuition05-demo2-car-recognition-hidden-layers-demo.png)
+![04-intuition05-demo2-car-recognition-hidden-layers-demo](/assets/images/meachine-learning/neural-network/04-intuition05-demo2-car-recognition-hidden-layers-demo.png)
 
 same as face recognition:
 - digit the image into a vector.
@@ -179,7 +179,7 @@ let's take a look at layer 1.
 
 > Note: layer 0 is the input layer.
 
-![04-intuition06-zoom-in-layer1](/assets/images/meachine-learning/nerual-network/04-intuition06-zoom-in-layer1.png)
+![04-intuition06-zoom-in-layer1](/assets/images/meachine-learning/neural-network/04-intuition06-zoom-in-layer1.png)
 
 As we can see, the three neurons in the layer 1 are all sigmoid neurons, because the activation function of neuron is sigmoid function. Of course, the activation function of neuron can not only be sigmoid function, but also be linear function, etc.
 
@@ -189,7 +189,7 @@ As we can see, the three neurons in the layer 1 are all sigmoid neurons, because
 
 Let's take a look at the layer 2.
 
-![04-intuition06-zoom-in-layer2](/assets/images/meachine-learning/nerual-network/04-intuition06-zoom-in-layer2.png)
+![04-intuition06-zoom-in-layer2](/assets/images/meachine-learning/neural-network/04-intuition06-zoom-in-layer2.png)
 
 As we can see, the one neuron in the layer 2 is a sigmoid neuron.
 
@@ -197,7 +197,7 @@ Althrough layer 2 is the output layer, but it's output is a vector, not a number
 
 So we need to handle the vector.
 
-![04-intuition06-zoom-in-layer2-output](/assets/images/meachine-learning/nerual-network/04-intuition06-zoom-in-layer2-output.png)
+![04-intuition06-zoom-in-layer2-output](/assets/images/meachine-learning/neural-network/04-intuition06-zoom-in-layer2-output.png)
 
 Then, we can get the result 0 or 1.
 
@@ -205,7 +205,7 @@ Then, we can get the result 0 or 1.
 
 So, let's summarize the intuition of neural network.
 
-![04-intuition07-summary](/assets/images/meachine-learning/nerual-network/04-intuition07-summary.png)
+![04-intuition07-summary](/assets/images/meachine-learning/neural-network/04-intuition07-summary.png)
 
 
 ## 3 inference
@@ -228,7 +228,7 @@ And by the way, this type of neural network architecture where you have more hid
 
 let's take a look at the code.
 
-![05-fake-code-for-roast-coffee-beans](/assets/images/meachine-learning/nerual-network/05-fake-code-for-roast-coffee-beans.png)
+![05-fake-code-for-roast-coffee-beans](/assets/images/meachine-learning/neural-network/05-fake-code-for-roast-coffee-beans.png)
 
 - layer 0 is input layer. denoted by $\mathbf{x}$
 - layer 1 has 3 neurons, suppose all activation function are sigmoid function.
@@ -239,14 +239,14 @@ let's take a look at the code.
 
 So summary, there are 5 steps to build a neural network:
 
-![06-five-step-to-build-a-neural-network](/assets/images/meachine-learning/nerual-network/06-five-step-to-build-a-neural-network.png)
+![06-five-step-to-build-a-neural-network](/assets/images/meachine-learning/neural-network/06-five-step-to-build-a-neural-network.png)
 
 1. Define the network structure. 
    - use `tf.keras.Sequential` and `tf.keras.layers.Dense` to define the network structure.
 2. define the network
    - loss function.
    - optimizer.
-   - MARK: wait to complete.
+   - and so on.
 3. define the X and Y.
 4. train the network. 
    - use `model.fit` to train the network.
@@ -257,17 +257,253 @@ So summary, there are 5 steps to build a neural network:
 
 First, let's see the every neuron do what.
 
-![07-forward-prop01-python-code](/assets/images/meachine-learning/nerual-network/07-forward-prop01-python-code.png)
+![07-forward-prop01-python-code](/assets/images/meachine-learning/neural-network/07-forward-prop01-python-code.png)
 
 Then, let's see the whole network with numpy, to understand the dense layer.
 
-![07-forward-prop02-numpy](/assets/images/meachine-learning/nerual-network/07-forward-prop02-numpy.png)
+![07-forward-prop02-numpy](/assets/images/meachine-learning/neural-network/07-forward-prop02-numpy.png)
 
 > more doc:
 > 
 > - [more about numpy operation](https://yc913344706.github.io/posts/some-summary/#2-numpy-operation)
 
 
-### 3.4 code demo
+### 3.4 code demo: output layer has one neuron
+
+#### 3.4.1 code
 
 [binary_handwritten_digit_recognization](https://github.com/yc913344706/ai-code/blob/main/NeuralNetwork/binary_handwritten_digit_recognization.ipynb)
+
+#### 3.4.2 code instructions
+
+So, that's how you can train a neural network in TensorFlow.
+
+- Step 1 is to specify the model, which tells TensorFlow how to compute for the inference. 
+- Step 2 compiles the model using a specific loss function.
+- Step 3 is to train the model. 
+
+and these steps are the similar to the model we learned before, just like the logistic regression.
+
+![08-brief-step-of-neural-network](/assets/images/meachine-learning/neural-network/08-brief-step-of-neural-network.png)
+
+[about cost function](https://yc913344706.github.io/posts/some-summary/#1-cost-function)
+
+- binary cross entropy: same as logistic regression loss function before, classification problem
+- mean squared error: usually in regression problem.
+
+> more doc:
+> 
+> - [more cost function](https://www.tensorflow.org/api_docs/python/tf/keras/losses)
+
+### 3.5 about use library
+
+In order to use gradient descent, the key thing you need to compute is these partial derivative terms. What TensorFlow does, and, in fact, what is standard in neural network training, is to use an algorithm called backpropagation in order to compute these partial derivative terms. TensorFlow can do all of these things for you. 
+
+One pattern I've seen across multiple ideas is as the technology evolves, libraries become more mature, and most engineers will use libraries rather than implement code from scratch. There have been many other examples of this in the history of computing.
+
+But today, deep learning libraries have matured enough that most developers will use these libraries, and, in fact, most commercial implementations of neural networks today use a library like TensorFlow or PyTorch. 
+
+But as I've mentioned, it's still useful to understand how they work under the hood so that if something unexpected happens, which still does with today's libraries, you have a better chance of knowing how to fix it. 
+
+### 3.6 about the activation function
+
+The most common activation functions are the following:
+
+| activation function | function |
+| --- | --- |
+| linear | $f(z) = z$ |
+| sigmoid | $f(z) = \frac{1}{1+e^{-z}}$ |
+| relu() | rectified linear unit(ReLU) <br/> $f(z) = max(0,z)$ |
+
+Here is the different activation functions intuition.
+
+![09-choose-activation-function01-output-layer](/assets/images/meachine-learning/neural-network/09-choose-activation-function01-output-layer.png)
+
+And, here is how to choose the activation function.
+
+| activation function | applicable scenario |
+| --- | --- |
+| sigmoid | binary classification |
+| linear | y is continuous, positive or negative | 
+| relu() | y >= 0 |
+
+![09-choose-activation-function02-summary](/assets/images/meachine-learning/neural-network/09-choose-activation-function02-summary.png)
+
+
+By the way, if you look at the research literature, you sometimes hear of authors using even other activation functions, such as the tan h activation function or the LeakyReLU activation function or the swish activation function. Every few years, researchers sometimes come up with another interesting activation function, and sometimes they do work a little bit better. 
+
+But I think for the most part, and for the vast majority of applications what you learned about in this video would be good enough. 
+
+### 3.7 code demo: output layer has multiple neurons
+
+#### 3.7.1 code instructions
+
+**3.7.1.1 problem intuition**
+
+Let's take a look what this problem looks like.
+
+![10-1multi-class](/assets/images/meachine-learning/neural-network/10-1multi-class.png)
+
+And, this is also the classification problem, but not only two classes, but multiple classes.
+
+![10-2multi-class02](/assets/images/meachine-learning/neural-network/10-2multi-class02.png)
+
+**3.7.1.2 softmax intuition**
+
+So, how can we calculate the probability of each class?
+
+We say if class number is 2, then probability of:
+
+- class 1: $a_1 = g(z) = \frac{1}{1+ e^{-z}}$
+- class 2: $a_2 = 1 - a_1$
+
+When class number is multiple, then the sum of all the probabilities, we say, 1.
+
+$$a_j = \frac{e^{z_j}}{ \sum_{k=1}^{N}{e^{z_k} }} \tag{1}$$
+The output $\mathbf{a}$ is a vector of length N, so for softmax regression, you could also write:
+$$
+\begin{align}
+\mathbf{a}(x) =
+\begin{bmatrix}
+P(y = 1 | \mathbf{x}; \mathbf{w},b) \\
+\vdots \\
+P(y = N | \mathbf{x}; \mathbf{w},b)
+\end{bmatrix}
+=
+\frac{1}{ \sum_{k=1}^{N}{e^{z_k} }}
+\begin{bmatrix}
+e^{z_1} \\
+\vdots \\
+e^{z_{N}} \\
+\end{bmatrix}
+\end{align}
+$$
+
+So, here is the intuition of the softmax regression.
+
+![10-3softmax-intuition](/assets/images/meachine-learning/neural-network/10-3softmax-intuition.png)
+
+**3.7.1.3 softmax regression loss and cost function**
+
+And, this is the cross-entropy loss.
+
+$$
+\begin{equation}
+  L(\mathbf{a},y)=\begin{cases}
+    -log(a_1), & \text{if $y=1$}.\\
+        &\vdots\\
+     -log(a_N), & \text{if $y=N$}
+  \end{cases}
+\end{equation}
+$$
+
+Now the cost is:
+$$
+\begin{align}
+J(\mathbf{w},b) = -\frac{1}{m} \left[ \sum_{i=1}^{m} \sum_{j=1}^{N}  1\left\{y^{(i)} == j\right\} \log \frac{e^{z^{(i)}_j}}{\sum_{k=1}^N e^{z^{(i)}_k} }\right]
+\end{align}
+$$
+
+Where $m$ is the number of examples, $N$ is the number of outputs. This is the average of all the losses.
+
+
+![10-4softmax-cost](/assets/images/meachine-learning/neural-network/10-4softmax-cost.png)
+
+**3.7.1.4 fake code intuition**
+
+And, in neural network, different neurons in output layer are independent, let's how to denote these probabilities.
+
+![10-5nn-model-for-softmax](/assets/images/meachine-learning/neural-network/10-5nn-model-for-softmax.png)
+
+And, here is the fake code.
+
+![10-6nn-code-intuition-for-softmax](/assets/images/meachine-learning/neural-network/10-6nn-code-intuition-for-softmax.png)
+
+**3.7.1.5 optimization: numerical accuracy**
+
+And more, we need optimize the fake code. 
+
+why? because the numerical accuracy is not good. Here is the reason.
+
+![10-7nn-improve-the-numerical-accuracy](/assets/images/meachine-learning/neural-network/10-7nn-improve-the-numerical-accuracy.png)
+
+So, how to optimize the numerical accuracy?
+
+1. about logistic regression
+   ![10-7nn-improve-the-numerical-accuracy02](/assets/images/meachine-learning/neural-network/10-7nn-improve-the-numerical-accuracy02.png)
+
+2. about softmax regression
+   ![10-7nn-improve-the-numerical-accuracy03](/assets/images/meachine-learning/neural-network/10-7nn-improve-the-numerical-accuracy03.png)
+
+**3.7.1.6 optimization: adam**
+
+The Adam optimizer is the recommended optimizer for finding the optimal parameters of the model.
+
+The Adam algorithm can adjust the learning rate automatically. 
+
+Adam stands for Adaptive Moment Estimation, or A-D-A-M.
+
+The intuition behind the Adam algorithm is, if a parameter w_j, or b seems to keep on moving in roughly the same direction. This is what we saw on the first example on the previous slide. But if it seems to keep on moving in roughly the same direction, let's increase the learning rate for that parameter. Let's go faster in that direction. 
+
+Conversely, if a parameter keeps oscillating back and forth, this is what you saw in the second example on the previous slide. Then let's not have it keep on oscillating or bouncing back and forth. Let's reduce Alpha_j for that parameter a little bit. 
+
+The details of how Adam does this are a bit complicated and beyond the scope of this course, but if you take some more advanced deep learning courses later, you may learn more about the details of this Adam algorithm.
+
+![10-8nn-improve-the-learning-rate](/assets/images/meachine-learning/neural-network/10-8nn-improve-the-learning-rate.png)
+
+
+#### 3.7.2 code
+
+[multiple_handwritten_digit_recognization](https://github.com/yc913344706/ai-code/blob/main/NeuralNetwork/multiple_handwritten_digit_recognization.ipynb)
+
+
+### 3.8 About multi labels problem
+
+What's multi labels problem?
+
+![11-multi-labels-1situation.png](/assets/images/meachine-learning/neural-network/11-multi-labels-1situation.png)
+
+How to solve multi labels problem?
+
+- one, surely you can train muliple neural networks, one for each label, but it's not good.
+- two, you can use the multi-label neural network.
+
+![11-multi-labels-2nn-model](/assets/images/meachine-learning/neural-network/11-multi-labels-2nn-model.png)
+
+well, we may add a demo for this situation.
+MARK: wait to complete.
+
+### 3.9 About different layers
+
+1. dense layer: 
+every neuron in the layer gets its inputs all the activations from the previous layer. 
+
+2. convolutional layer:
+
+this is the type of layer where each neuron only looks at a region of the input image is called a convolutional layer.
+
+![12-convolutional-layer-intuition1](/assets/images/meachine-learning/neural-network/12-convolutional-layer-intuition1.png)
+
+And it turns out that with convolutional layers you have many architecture choices such as how big is the window of inputs that a single neuron should look at and how many neurons should layer have. 
+
+And by choosing those architectural parameters effectively, you can build new versions of neural networks that can be even more **effective** than the dense layer for some applications. 
+
+![12-convolutional-layer-intuition2](/assets/images/meachine-learning/neural-network/12-convolutional-layer-intuition2.png)
+
+
+3. other type layers:
+
+And in fact, if you sometimes hear about the latest cutting edge architectures like a transformer model or an LS TM or an attention model. 
+
+A lot of this research in neural networks even today pertains to researchers trying to invent new types of layers for neural networks. And plugging these different types of layers together as building blocks to form even more complex and hopefully more powerful neural networks.
+
+[more layers](https://www.tensorflow.org/api_docs/python/tf/keras/layers)
+
+
+
+
+
+
+
+
+

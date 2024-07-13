@@ -171,20 +171,20 @@ the output of data science project is a set of insights that can help you make b
 
 > So even in one company, you may have different machine learning and data science projects, both of which can be incredibly valuable.
 
-### 5.2 Nerual Network vs Deep Learning
+### 5.2 Neural Network vs Deep Learning
 
 the terms neural network and deep learning are used almost interchangeably, they mean essentially the same thing.
 Many decades ago, this type of software was called a neural network. But in recent years, we found that deep learning was just a much better sounding brand.
 
 a neural network is a very effective technique for learning A to B, or input to output mappings.
 
-![12-ai-deeplearning-nerualnetwork](/assets/images/ai-for-everyone/01-what-is-ai/12-ai-deeplearning-nerualnetwork.png)
+![12-ai-deeplearning-neuralnetwork](/assets/images/ai-for-everyone/01-what-is-ai/12-ai-deeplearning-neuralnetwork.png)
 
 ### 5.3 AI tools
 
 - **AI**: AI is this huge set of tools for making computers behave intelligently.
 - **Machine Learning**: Of AI, the biggest subset is probably tools from machine learning, but AI does have other tools than machine learning, such as some of these buzzwords listed at the bottom.
-- **Deep Learning or Nerual Network**: is a very powerful set of tools for carrying out supervised learning, or A to B mappings,
+- **Deep Learning or Neural Network**: is a very powerful set of tools for carrying out supervised learning, or A to B mappings,
   as well as some other things. But there are also other machine learning tools that are not just deep learning tools.
 - **Data Science**: data science is maybe a cross cutting subset of all of these tools that uses many tools from AI, machine learning and deep learning. But has some other separate tools as well that solves a very set of important problems in driving business insights.
 
@@ -276,7 +276,7 @@ In contrast, an AI system isn't really able to do that today.
 More about different types from data set:
 A good AI team would be able to ameliorate, or to reduce some of these problems, but doing this is not that easy. This is one of the things that AI is actually much weaker than humans.
 
-## 8 Deep Learning or Nerual Network
+## 8 Deep Learning or Neural Network
 
 Let's start by an example.
 
