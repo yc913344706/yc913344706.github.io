@@ -2,7 +2,7 @@
 layout: post
 title: 【Meachine Learning】08 Neural Network
 categories: [AI, Meachine Learning]
-tags: [Neural Network, inference, forward propagation]
+tags: [Neural Network, inference, forward propagation, convolutional layer]
 math: true
 ---
 
