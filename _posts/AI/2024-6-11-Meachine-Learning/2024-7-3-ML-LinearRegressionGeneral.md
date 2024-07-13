@@ -30,11 +30,10 @@ At here, we use the `dot project`, which is a method of computing in which we us
 
 And, we archieve that by `Numpy`, it's a powerful library for scientific computing.
 
+
 > more doc:
->
-> - [more about (\*, np.multiply, np.dot, np.matmul, and @)](https://mkang32.github.io/python/2020/08/30/numpy-matmul.html)
-> - [matrix multiplication](https://blog.csdn.net/STRVE/article/details/106739349)
-> - [numpy array slice](https://blog.csdn.net/weixin_43629813/article/details/101122997)
+> 
+> - [more about numpy operation](https://yc913344706.github.io/posts/some-summary/#2-numpy-operation)
 
 ## linear regression code with vectorization
 

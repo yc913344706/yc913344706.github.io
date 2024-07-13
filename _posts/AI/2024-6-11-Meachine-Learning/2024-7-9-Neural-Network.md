@@ -2,7 +2,7 @@
 layout: post
 title: 【Meachine Learning】08 Neural Network
 categories: [AI, Meachine Learning]
-tags: [Neural Network]
+tags: [Neural Network, inference, forward propagation]
 math: true
 ---
 
@@ -206,3 +206,68 @@ Then, we can get the result 0 or 1.
 So, let's summarize the intuition of neural network.
 
 ![04-intuition07-summary](/assets/images/meachine-learning/nerual-network/04-intuition07-summary.png)
+
+
+## 3 inference
+
+### 3.1 inference intuition
+
+Let's take what we've learned and put it together into an algorithm to let your neural network make `inferences` or make predictions. 
+
+This will be an algorithm called `forward propagation`. 
+
+inference, using the forward propagation algorithm.
+
+forward propagation algorithm: let your neural network make inferences or make predictions.
+
+Because this computation goes from left to right, you start from x and compute a1, then a2, then a3. This album is also called forward propagation because you're propagating the activations of the neurons. So you're making these computations in the forward direction from left to right.
+
+And by the way, this type of neural network architecture where you have more hidden units initially and then the number of hidden units decreases as you get closer to the output layer. There's also a pretty typical choice when choosing neural network architectures. 
+
+### 3.2 inference fake code
+
+let's take a look at the code.
+
+![05-fake-code-for-roast-coffee-beans](/assets/images/meachine-learning/nerual-network/05-fake-code-for-roast-coffee-beans.png)
+
+- layer 0 is input layer. denoted by $\mathbf{x}$
+- layer 1 has 3 neurons, suppose all activation function are sigmoid function.
+  - Dense: dense means every neuron in the current layer is connected to every neuron in the previous layer.
+- layer 2 has 1 neuron, suppose activation function is sigmoid function.
+
+> Note: every layer output is a vector.
+
+So summary, there are 5 steps to build a neural network:
+
+![06-five-step-to-build-a-neural-network](/assets/images/meachine-learning/nerual-network/06-five-step-to-build-a-neural-network.png)
+
+1. Define the network structure. 
+   - use `tf.keras.Sequential` and `tf.keras.layers.Dense` to define the network structure.
+2. define the network
+   - loss function.
+   - optimizer.
+   - MARK: wait to complete.
+3. define the X and Y.
+4. train the network. 
+   - use `model.fit` to train the network.
+5. evaluate the network.
+   - use `model.evaluate` to evaluate the network.
+
+### 3.3 intuition about the dense layer
+
+First, let's see the every neuron do what.
+
+![07-forward-prop01-python-code](/assets/images/meachine-learning/nerual-network/07-forward-prop01-python-code.png)
+
+Then, let's see the whole network with numpy, to understand the dense layer.
+
+![07-forward-prop02-numpy](/assets/images/meachine-learning/nerual-network/07-forward-prop02-numpy.png)
+
+> more doc:
+> 
+> - [more about numpy operation](https://yc913344706.github.io/posts/some-summary/#2-numpy-operation)
+
+
+### 3.4 code demo
+
+[binary_handwritten_digit_recognization](https://github.com/yc913344706/ai-code/blob/main/NeuralNetwork/binary_handwritten_digit_recognization.ipynb)
