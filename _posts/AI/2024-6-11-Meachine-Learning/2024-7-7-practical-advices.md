@@ -471,5 +471,11 @@ But I have killed the project just on ethical grounds because I think that even 
 
 ![16-ethics-guidelines](/assets/images/meachine-learning/practical-advice/16-ethics-guidelines.png)
 
+## 10 code demo
 
+### 10.1 intuition for model evaluate
+
+- [model evaluate for: linear regression](https://github.com/yc913344706/ai-code/blob/main/LinearRegression/RealDemo01_Linear.ipynb)
+- [model evaluate for: Neural Network: linear regression](https://github.com/yc913344706/ai-code/blob/main/LinearRegression/RealDemo01_NN_Linear.ipynb)
+- [model evaluate for: Neural Network: logistic regression](https://github.com/yc913344706/ai-code/blob/main/LogisticRegression/RealDemo01_NN_Logistic.ipynb)
 
