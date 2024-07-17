@@ -47,7 +47,7 @@ Boardcast VectorAdd:
 
 - [numpy array slice](https://blog.csdn.net/weixin_43629813/article/details/101122997)
 
-## 3 demo for different algorithms
+## 3 code demo for different algorithms
 
 ### 3.1 linear regression demo
 
@@ -65,9 +65,19 @@ Boardcast VectorAdd:
 
 ### 3.3 neural network demo
 
-| scenario | code |
-| --- | --- |
-| recognize the handwritten digit | - [binary_handwritten_digit_recognization](https://github.com/yc913344706/ai-code/blob/main/NeuralNetwork/binary_handwritten_digit_recognization.ipynb) <br/> - [multiple_handwritten_digit_recognization](https://github.com/yc913344706/ai-code/blob/main/NeuralNetwork/multiple_handwritten_digit_recognization.ipynb)|
+- [binary_handwritten_digit_recognization](https://github.com/yc913344706/ai-code/blob/main/NeuralNetwork/binary_handwritten_digit_recognization.ipynb)
+- [multiple_handwritten_digit_recognization](https://github.com/yc913344706/ai-code/blob/main/NeuralNetwork/multiple_handwritten_digit_recognization.ipynb)
+
+### 3.4 decision tree demo
+
+- [diagnose Context Cardiovascular diseases by multiple features](https://github.com/yc913344706/ai-code/blob/main/DecisionTree/DecisionTree_RandomForest_XGBoost.ipynb)
+
+
+### 3.5 intuition for model evaluate
+
+- [model evaluate for: linear regression](https://github.com/yc913344706/ai-code/blob/main/LinearRegression/RealDemo01_Linear.ipynb)
+- [model evaluate for: Neural Network: linear regression](https://github.com/yc913344706/ai-code/blob/main/LinearRegression/RealDemo01_NN_Linear.ipynb)
+- [model evaluate for: Neural Network: logistic regression](https://github.com/yc913344706/ai-code/blob/main/LogisticRegression/RealDemo01_NN_Logistic.ipynb)
 
 ## 4 derivative
 

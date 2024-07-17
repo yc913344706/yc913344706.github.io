@@ -471,11 +471,13 @@ But I have killed the project just on ethical grounds because I think that even 
 
 ![16-ethics-guidelines](/assets/images/meachine-learning/practical-advice/16-ethics-guidelines.png)
 
-## 10 code demo
+## 10 about find optimal hyperparameters
 
-### 10.1 intuition for model evaluate
+You have demonstrated how to look for the best value hyperparameter-by-hyperparameter. However, you should not overlook that as we experiment with one hyperparameter we always have to fix the others at some default values. This makes us only able to tell how the hyperparameter value changes with respect to those defaults.
 
-- [model evaluate for: linear regression](https://github.com/yc913344706/ai-code/blob/main/LinearRegression/RealDemo01_Linear.ipynb)
-- [model evaluate for: Neural Network: linear regression](https://github.com/yc913344706/ai-code/blob/main/LinearRegression/RealDemo01_NN_Linear.ipynb)
-- [model evaluate for: Neural Network: logistic regression](https://github.com/yc913344706/ai-code/blob/main/LogisticRegression/RealDemo01_NN_Logistic.ipynb)
+In princple, if you have 4 values to try out in each of the 3 hyperparameters being tuned, you should have a total of 4 x 4 x 4 = 64 combinations, however, the way you are doing will only give us 4 + 4 + 4 = 12 results.
+
+To try out all combinations, you can use a sklearn implementation called GridSearchCV, moreover, it has a refit parameter that will automatically refit a model on the best combination so you will not need to program it explicitly.
+
+For more on GridSearchCV, please refer to its documentation.
 
