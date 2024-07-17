@@ -285,8 +285,7 @@ of different ways of implementing boosting the most widely used one today is XGB
 
 XGBoost has many advantage, and it's easy to code.
 
-code demo
-MARK: wait to complete.
+[code demo](https://yc913344706.github.io/posts/some-summary/#34-decision-tree-demo)
 
 ## 8 difference between decision tree and neural network
 
