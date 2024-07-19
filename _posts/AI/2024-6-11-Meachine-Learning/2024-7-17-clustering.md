@@ -319,6 +319,8 @@ So just to summarize the development process will often go through is, to train 
 
 That example takes on unusually large or unusually small values on the new features, so that you can now successfully flag those examples as anomalies. 
 
+![16-error-analysis-add-feature2-how-demo](/assets/images/meachine-learning/clustering/16-error-analysis-add-feature2-how-demo.png)
+
 And you can play around with different choices of these features. In order to try to get it so that P of X is still large for the normal examples but it becomes small in the anomalies in your cross validation set.
 
 #### 3.5.4 summary

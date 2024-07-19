@@ -99,7 +99,11 @@ That's why we say the algorithm has high variance.
 
 #### 4.5.2 feature selection
 
-MARK: wait to complete.
+Here is one feature selection method intuition
+
+![16-error-analysis-add-feature2-how-demo](/assets/images/meachine-learning/clustering/16-error-analysis-add-feature2-how-demo.png)
+
+And, feature can be gotten from experience.
 
 #### 4.5.3 regularization
 
@@ -278,8 +282,7 @@ I find that I'm often fighting variance problems rather than bias problems, at l
 
 Having said that even when you're training a neural network measuring bias and variance and using that to guide what you do next is often a very helpful thing to do. 
 
-demo of use regularization to control bias and variance
-MARK: wait to complete.
+[demo of use regularization to control bias and variance](https://yc913344706.github.io/posts/some-summary/#35-intuition-for-model-evaluate)
 
 ### 5.7 Error Analysis
 
