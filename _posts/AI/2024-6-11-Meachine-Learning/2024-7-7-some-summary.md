@@ -79,6 +79,14 @@ Boardcast VectorAdd:
 - [model evaluate for: Neural Network: linear regression](https://github.com/yc913344706/ai-code/blob/main/LinearRegression/RealDemo01_NN_Linear.ipynb)
 - [model evaluate for: Neural Network: logistic regression](https://github.com/yc913344706/ai-code/blob/main/LogisticRegression/RealDemo01_NN_Logistic.ipynb)
 
+### 3.6 Clustering demo
+
+- K-Means:
+  - [ClusteringIntuition](https://github.com/yc913344706/ai-code/blob/main/Clustering/ClusteringIntuition.ipynb)
+  - [KMeans01_ImageCompression](https://github.com/yc913344706/ai-code/blob/main/Clustering/KMeans01_ImageCompression.ipynb)
+- Anomaly detection:
+  - [detect computer server anomalies](https://github.com/yc913344706/ai-code/blob/main/Clustering/DetectServerAnomaly.ipynb)
+
 ## 4 derivative
 
 遇到复杂计算找python绝对不让你失望，sympy是一个Python的科学计算库，用一套强大的符号计算体系完成诸如多项式求值、求极限、解方程、求积分、微分方程、级数展开、矩阵运算等等计算问题。
@@ -86,3 +94,17 @@ Boardcast VectorAdd:
 doc:
 
 - https://blog.csdn.net/cj151525/article/details/95756847
+
+## 5 other doc summary
+
+### 5.1 mathmatics
+
+- [pupulation mean](https://wumbo.net/formulas/population-mean/)
+
+### 5.2 markdown
+
+- [mathjax/katex/latex in markdown](https://freeopen.github.io/mathjax/)
+- [MathJax markdown demo](https://timefy.github.io/posts/2fa412f3.html)
+
+
+
