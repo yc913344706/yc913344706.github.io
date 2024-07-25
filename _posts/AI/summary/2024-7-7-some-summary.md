@@ -95,16 +95,19 @@ doc:
 
 - https://blog.csdn.net/cj151525/article/details/95756847
 
-## 5 other doc summary
 
-### 5.1 mathmatics
+## 100 other doc summary
+
+### 100.1 mathmatics
 
 - [pupulation mean](https://wumbo.net/formulas/population-mean/)
 
-### 5.2 markdown
+### 100.2 markdown
 
 - [mathjax/katex/latex in markdown](https://freeopen.github.io/mathjax/)
 - [MathJax markdown demo](https://timefy.github.io/posts/2fa412f3.html)
 
+### 100.3 concepts in ML
 
+- [batch, batch size, iteration/step](https://blog.csdn.net/lfs666666/article/details/88135618)
 
