@@ -16,7 +16,7 @@ timezone:
 
 title: FWalker Vayne # the main title
 
-tagline: Future Journey # it will display as the sub-title
+tagline: "Journey: Ops > DevOps > AI" # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
   A blog for AI.
