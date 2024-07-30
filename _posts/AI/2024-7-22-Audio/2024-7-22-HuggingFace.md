@@ -1,7 +1,7 @@
 ---
 layout: post
-title: 【ASR】01 HuggingFace
-categories: [AI, ASR]
+title: 【Audio】01 HuggingFace
+categories: [AI, Audio]
 tags: [HuggingFace]
 ---
 
