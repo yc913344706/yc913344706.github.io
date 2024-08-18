@@ -277,11 +277,11 @@ the key is add 'prompt' to each step.
 
 - add noise with text
 
-![08-image-add-noise](/assets/images/llm-for-everyone/08-image-add-noise.png)
+![08-image-txt-add-noise](/assets/images/llm-for-everyone/08-image-txt-add-noise.png)
 
 - image generation with text
 
-![08-image-generation](/assets/images/llm-for-everyone/08-image-generation.png)
+![08-image-txt-generation](/assets/images/llm-for-everyone/08-image-txt-generation.png)
 
 
 
