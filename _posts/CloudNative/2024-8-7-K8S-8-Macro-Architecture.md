@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 【Cloud Native】02 K8S 8大宏观架构
-categories: [CloudNative, K8S学习圣经]
-tags: [K8S架构]
+categories: [CloudNative, K8S]
+tags: []
 ---
 
 ## 0 文档

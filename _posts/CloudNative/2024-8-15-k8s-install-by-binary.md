@@ -1,8 +1,8 @@
 ---
 layout: post
-title: 【Cloud Native】03-3 K8S 安装 -- 二进制包
-categories: [CloudNative, K8S安装]
-tags: [二进制包]
+title: 【Cloud Native】03-3 K8S 安装 -- 二进制包安装
+categories: [CloudNative, K8S]
+tags: []
 ---
 
 ## 0 说明

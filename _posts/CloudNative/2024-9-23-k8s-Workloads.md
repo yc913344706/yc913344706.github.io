@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【Cloud Native】06 K8S 工作负载
-categories: [CloudNative, K8S工作负载]
+categories: [CloudNative, K8S]
 tags: []
 ---
 

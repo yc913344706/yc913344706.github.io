@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【Cloud Native】04 K8S 基础概念
-categories: [CloudNative, K8S学习圣经]
+categories: [CloudNative, K8S]
 tags: []
 ---
 
@@ -525,4 +525,110 @@ Pod 网络（Cluster CIDR）
   - [参考这里](https://kubernetes.io/zh-cn/docs/tasks/administer-cluster/migrating-from-dockershim/troubleshooting-cni-plugin-related-errors/)
 
 
+## OCI, CRI, CNI, CSI, CNM, CRD
 
+首先我们来看一张图
+
+![09-worker架构图](/assets/images/Cloud-Native/02-k8s-macro-architecture/09-worker架构图.png)
+
+
+|缩写| 描述|
+|:----|:----|
+|CNI|- CNI 就是这样一个标准，它旨在为容器平台提供**网络的标准**化。<br/>- 不同的容器平台能够通过相同的接口调用不同的网络组件。|
+
+
+OCI (Open Container Initiative)：
+- 容器开放接口规范，
+- 由多家公司共同组成于2015年6月成立的项目 (Docker,Google,CoreOS等公司)，并由Linux基金会运行管理，
+- 旨在围绕容器格式和运行时制定一个开放的工业化标准. 
+- 目前主要有两个标准文档: 
+  - 容器运行时标准 (runtime spec)和
+  - 容器镜像标准(image spec)
+
+CRI (Container Runtime Interface) :
+- 容器运行时接口，提供计算资源。
+- kubernetes1.5版本之后，kubernetes项目推出了自己的运行时接口api-CRI(container runtimeinterface)。
+- CRI由SIG-Node小组维护(Kubernete社区的一个小组)
+  - kubernetes的社区是以SIG (Special Interest Group特别兴趣小组)和工作组的形式组织，每个工作组都会定期召开视频会议。
+- 常见CRI组件:
+  - cri-o: 同时兼容OC和CRI的容器运行时;
+  - cri-containerd: 基于Containerd的kubernetes实现
+  - rkt: 由于CoreOS主推的用来跟docker抗衡的容器运行时:
+  - frakti: 基于hypervisor的CRI;
+  - docker: kuberentes最初就开始支持的容器运行时，目前还没完全从kubelet中解耦，docker公司同时推广了OCI标准;
+  - clear-containers: 由Intel推出的同时兼容OCI和CRI的容器运行时;
+  - kata-containers: 符合OCI规范同时兼容CRI;
+  - pouchContainer: 阿里巴巴集团开源的高效、轻量级企业级容器引擎技术，拥有隔离性强、可移植性高、资源占用少等特性。
+- 更多文档：
+  - [Docker，containerd，CRI，CRI-O，OCI，runc 分不清？看这一篇就够了](https://cloud.tencent.com/developer/article/1988350)
+  - [Containerd 的前世今生和保姆级入门教程](https://www.cnblogs.com/ryanyangcs/p/14168400.html)
+
+CNI (Container Network Interface)
+- 容器网络接口，提供网络资源。
+- 是和 CoreOS 主导制定的容器网络标准，它本身并不是实现或者代码，可以理解成一个协议。
+- CNI旨在为容器平台提供网络的标准化。
+- 容器平台可以从CNI获取到满足网络互通条件的网络参数(如IP地址、网关、路由、DNS等)。
+- CNI标准规范是在rkt网络提议的基础上发展起来的，综合考虑了灵活性、扩展性、ip 分配、多网卡等因素。
+- 不同的容器平台(比如kubernetes、Mesos和 RKT) 能够通过相同的接口调用不同的网络组件
+- 这个协议连接了两个组件: 容器管理系统和网络插件，具体的事情都是插件实现，包括: 
+  - 创建容器网络空间 (network namespace)、
+  - 把网络接口(interface)放到对应的网络空间、
+  - 给网络接口分配IP等。
+- 常见CNI组件:
+  - Flannel: 目前最普遍的实现，同时支持overlayer (UDP，VxLAN)和underlayer(host-gw)的网络后端实现;
+  - Calico: 基于BGP的underlayer方案，功能丰富，对底层网络有一定要求;
+  - Cilium: 基于eBPF和XDP的高性能Overlayer方案
+  - Kube-Route: 采用BGP提供网络直连，集成基于LVS的负载均衡能力;
+  - WeaveNet: 采用UDP封装实现的L2 0verlayer方案，支持用户态(慢，可加密)和内核态(快，无加密)两种实现;
+
+
+CNM (Container Network Model) :
+- 容器网络模型，提供网络资源。
+- 由Docker公司提出.
+- CNI CNM 的不同：
+  - CNI(CoreOS公司)支持与第三方IPAM的集成，可以用于任何容器runtime。
+    - 由于CNI简单的设计，许多人认为编写CNI插件会比编写CNM插件来得简单。
+    - 模块化设计，模块化，增加了用户的选择。也促进了第三方网络插件以创新来提供更高级的网络功能
+  - CNM(Docker公司)从设计上就仅仅支持Docker。
+    - CNM 模式下的网络驱动不能访问容器的网络命名空间。
+    - 这样做的好处是libnetwork可以为冲突解决提供仲裁。
+    - 一个例子是: 
+      - 两个独立的网络驱动提供同样的静态路由配置，但是却指向不同的下一跳IP地址。
+    - 与此不同，CNI允许驱动访问容器的网络命名空间。CNI正在研究在类似情况下如何提供仲裁。
+
+
+CSI (Container Storage Interface) :
+- 容器存储接口，提供存储资源。
+- 由 kubernetes、Mesos、Docker 等社区成员联合制定的一个行业标准接口规范，旨在将任意存储系统暴露给容器化应用程序。
+- kubernetes 1.9 版为alpha阶段-->kubernetes 1.10版为beta阶段->kubernetes 1.13 GA.
+- kubernetes中 Volume 的生命周期与Pod的生命周期相同，跟容器的生命周期不想关，当容器终止或重启时，Volume 中的数据不会丢失。
+- 这点跟Docker中的Volume不同。
+- kubernetes支持两种资源的供应模式:
+  - 静态模式(Static)和动态模式(Dynamic)。
+
+
+CRD (Custom Resource Definition):
+- CRD到底有什么用：
+  - Kubernetes API 默认提供的众多的功能性资源类型可用于容器编排以解决多数场景中的编排需求。
+  - 但是，有些场景也需要借助于额外的或更高级别的编排抽象。例如：
+     - 引入集群外部的一些服务并以资源对象的形式进行管理，
+     - 或者把 Kubernetes 的多个标准资源对象合并为一个单一的更高级别的资源抽象
+     - 等等。
+  - 而这类的 API 扩展抽象通常也应该兼容 Kubernetes 系统的基本特性，如
+     - 支持 kubectl 管理工具、CRUD 及 watch 机制、
+     - 标签、etcd 存储、认证、授权、RBAC 及审计，等等，
+     - 从而使得用户可将精力集中于构建业务逻辑本身。
+  - 目前，扩展 Kubernetes API 的常用方式有三种：
+    - 使用 CRD（CustomResourceDefinitions）自定义资源类型。
+    - 开发自定义的 API Server 并聚合至主 API Server。
+    - 定制扩展 Kubernetes 源码。
+- k8s允许用户自定义资源
+- 定义CRM对象，会创建一个具有您指定的名称和架构的新定义资源.
+- Kubernetes API 提供并处理您的自定义资源的存储.
+
+- 用户资源定义，拓展能力。
+- Kubernetes 1.7+.
+
+- 文档：
+  - [CRD 就像 Kubernetes 中的一张表！](https://zhuanlan.zhihu.com/p/260797410)
+  - [Kubernetes——自定义资源类型（CRD）](https://www.cnblogs.com/zuoyang/p/16454293.html)

@@ -1,8 +1,8 @@
 ---
 layout: post
-title: 【Cloud Native】03-2 K8S 安装 -- kubeadm
-categories: [CloudNative, K8S安装]
-tags: [kubeadm]
+title: 【Cloud Native】03-2 K8S 安装 -- kubeadm安装
+categories: [CloudNative, K8S]
+tags: []
 ---
 
 ## 0 说明

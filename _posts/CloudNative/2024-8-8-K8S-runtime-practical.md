@@ -1,8 +1,8 @@
 ---
 layout: post
-title: 【Cloud Native】03 K8S 运行时实操
-categories: [CloudNative, K8S学习圣经]
-tags: [安装Kubernetes]
+title: 【Cloud Native】03 K8S 安装Kubernetes
+categories: [CloudNative, K8S]
+tags: []
 ---
 
 ## 0 文档

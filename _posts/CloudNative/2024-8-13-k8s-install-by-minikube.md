@@ -1,8 +1,8 @@
 ---
 layout: post
-title: 【Cloud Native】03-1 K8S 安装 -- minikube
-categories: [CloudNative, K8S安装]
-tags: [minikube]
+title: 【Cloud Native】03-1 K8S 安装 -- minikube安装
+categories: [CloudNative, K8S]
+tags: []
 ---
 
 ## 说明

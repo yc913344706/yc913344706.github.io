@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 【Cloud Native】01 云原生原理与演进
-categories: [CloudNative, K8S学习圣经]
-tags: [云原生, 服务网格]
+categories: [CloudNative, K8S]
+tags: []
 ---
 
 ## 0 文档
