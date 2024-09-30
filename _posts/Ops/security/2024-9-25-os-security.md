@@ -57,46 +57,19 @@ tags: []
 - 使用：
   - [Dakuzo + Clamav 实现 Linux 系统 FileSystem 实时病毒防护](https://blog.sinzy.net/@pcman/entry/7117)
 
-### centos 7
-
-文档：
-
 ## 使用
 
-### 更新病毒库
+### 更新病毒库、手动扫描
 
-```bash
+见[这里](https://gitee.com/ycvayne/sre/tree/master/security/clamav/bin)
 
-mkdir -p /var/log/clamav /usr/local/clamav/{updata,quarantine} && \
-    chown 101:102 /usr/local/clamav/{updata,quarantine} && \
-    chmod 700 /usr/local/clamav/quarantine
-
-
-
-```
 
 ### 配置自动任务
 
 ```bash
-cat > /usr/local/clamav/bin/cron_scan.sh << EOF
-#!/bin/bash
-
-TIMESTAMP=`date "+%Y-%m-%d %H:%M:%S"`
-
-mkdir -p /usr/local/clamav/quarantine/${TIMESTAMP}
-
-/usr/local/clamav/bin/clamscan \
-    -r / \
-    --move=/usr/local/clamav/quarantine/${TIMESTAMP} \
-    -l /var/log/clamav/clamscan_${TIMESTAMP}.log
-
-EOF
-
-chmod +x /usr/local/clamav/bin/cron_scan.sh
-
 crontab -e
 #让服务器每天晚上定时更新和杀毒，保存杀毒日志，crontab文件如下：
-1  3  * * *  /usr/local/clamav/bin/freshclam --quiet
-20 3  * * *  /usr/local/clamav/bin/cron_scan.sh
+1  3  * * *  /XXX/clamav_freshclam
+20 3  * * *  /XXX/clamav_scan
 ```
 
