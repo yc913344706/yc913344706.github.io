@@ -179,6 +179,29 @@ kube-proxy 在节点上维护网络规则，这些规则可以在集群内外正
 
 kube-proxy 在node节点维护iptables转发和ipvs规则，保持容器间的正常网络通讯，
 
+#### 1.9.1 kube-proxy工作模式
+
+kube-proxy目前支持三种工作模式:
+- userspace模式
+  - userspace模式下，kube-proxy会为每一个Service创建一个监听端口,
+  - 发向ClusterIP的请求被iptables规则重定向到kube-proxy监听的端口上，
+  - kube-proxy根据LB算法 (负载均衡算法)选择一个提供服务的Pod并和其建立连接，以便将请求转发到Pod上。
+- iptables模式:
+  - iptables模式下，kube-proxy为Service后端的每个Pod创建对应的iptables规则，直接将发向ClusterIP的请求重定向到一个Pod的IP上。
+- ipvs模式:
+  - ipvs模式和iptables类似，kube-proxy监控Pod的变化并创建相应的ipvs规则。
+  - ipvs相对iptables转发效率更高，除此之外，ipvs支持更多的LB算法。
+  - 开启ipvs (必须安装ipvs内核模块，否则会降级为iptables)
+
+区别：
+- 由于userspace模式因为可靠性和性能（频繁切换内核/用户空间）早已经淘汰，所有的客户端请求svc，先经过iptables，然后再经过kube-proxy到pod，所以性能很差。
+- IPVS模式与iptables同样基于Netfilter，但是ipvs采用的hash表，iptables采用一条条的规则列表。
+- iptables又是为了防火墙设计的，集群数量越多iptables规则就越多，而iptables规则是从上到下匹配，所以效率就越是低下。
+- 因此当service数量达到一定规模时，hash查表的速度优势就会显现出来，从而提高service的服务性能
+
+文档：
+- https://blog.csdn.net/qq_36807862/article/details/106068871
+
 ### K8S基础概念
 
 - K8S集群：是一组节点，这些节点可以是物理服务器或者虚拟机之上安装了

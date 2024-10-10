@@ -115,7 +115,6 @@ reference:
   - 在大多数情况下，用户不需要对此进行更改
 
 
-
 ## 2 服务流转
 
 refer doc:
@@ -126,8 +125,22 @@ refer doc:
 
 #### 2.1.1 服务简述
 
+为什么会有service 之 pod 的 ip 漂移问题：
+- k8s具有强大的副本控制能力，能保证任意副本（pod）挂掉时，自动从其他节点启动一个新的pod，还可以扩缩容等
+- 那么，随着pod的销毁和创建，pod ip 肯定会动态变化
+- 这个pod可能在任何时刻出现在任何节点上，也可能在任何时刻挂在任何节点上。
+
 - service通过使用**标签选择器**来指定哪些pod属于同一组。
 - 新的服务会分配一个集群内部IP，只能在集群内部访问，服务的主要目标是使集群内其他pod可以访问当前这种pod.
+- 对内: 副本的选择、负载均衡。SVC通过 Label Selector 标签选择的方式，匹配一组Pod，对外访问服务。
+- 对外: 流量的代理、转发。每一个 SVC可以理解成为一个微服务 gateway。
+
+![10-service理解](/assets/images/Cloud-Native/02-k8s-macro-architecture/10-service理解.png)
+
+service 能够提供负载均衡的能力，但是在使用上有以下限制:
+- 只提供4层负载均衡能力 (只有 RR 轮询算法)，而没有7层功能（比如不支持cookie）
+- 如果需要更多的转发规则来转发请求，4层上的负载均衡是不支持的.
+
 
 #### 2.1.2 会话亲和性 sessionAffinity
 
@@ -193,6 +206,17 @@ refer doc:
 
 #### 2.1.7 Type: NodePort
 
+![11-nodePort理解](/assets/images/Cloud-Native/02-k8s-macro-architecture/11-nodePort理解.png)
+
+NodePort 服务特征如如下:
+- (1)每个端口只能是一种服务
+- (2)端口范围只能是 30000-32767 (可调整)
+- (3)不在 YAML 配置文件中指定则会分配一个默认端口
+
+nodePort的原理在于：
+- 在node上开了一个端口，将向该端口的流量导入到kube-proxy，然后由 kube-proxy进一步到给对应的pod
+
+
 - 创建Servcie时指定type为Nodeport，会在所有集群节点上开一个相同的端口
 - 创建Nodeport时的同时会创建ClusterIP
 - **指定端口不是强制的，如果忽略，集群会自动分配一个**
@@ -203,6 +227,18 @@ refer doc:
 
 #### 2.1.8 Type: LoadBalancer
 
+- LoadBlancer Service是 kubernetes 深度结合云平台的一个组件;
+- 当使用 LoadBlancer Service暴露服务时，实际上是通过向底层云平台申请创建一个负载均衡器来向外暴露服务;
+- 目前 LoadBlancerService 支持的云平台已经相对完善，比如国外的 GCE、DigitalOcean，国内的阿里云，私有云Openstack 等等，
+
+> 由于 LoadBlancer Service 深度结合了云平台，所以只能在一些云平台上来使用
+
+- LoadBalancer和NodePort很相似，目的都是向外部暴露一个端口，区别在于:
+  - LoadBalancer会在集群的外部再来做一个负载均衡设备，而这个设备需要外部环境的支持，
+  - 外部服务发送到这个设备上的请求,会被设备负载之后转发到集群中。
+
+![12-loadBalance理解](/assets/images/Cloud-Native/02-k8s-macro-architecture/12-loadBalance理解.png)
+
 - LoadBalancer类型的service 是可以实现集群外部访问服务的另外一种解决方案。
 - 不过并不是所有的k8s集群都会支持，大多是在公有云托管集群中会支持该类型。
 - 如果环境不支持，则不会调负责均衡器，该服务就像一个Nodeport服务一样了。
@@ -211,6 +247,24 @@ refer doc:
 #### 2.1.9 Type: ExternalName
 
 见下方：2.2.1 Service 也可以指向 k8s 外的服务
+
+#### 2.1.10 SVC 的 DNS 解析
+
+service: 
+- A记录：非Headless Service: my-svc.my-namespace.svc.cluster.local，解析到 ClusterIP
+- A记录：Headless Service: my-svc.my-namespace.svc.cluster.local，解析到一组 Pod IP
+pod:
+- A记录：pod-ip-address.my-namespace.pod.cluster.local
+
+#### 2.1.11 SVC 流量分发的底层原理
+
+- api-server 监听 kube-proxy 来进行服务、端口的发现
+- kube-proxy 监控所哟 pod 节点信息、标签、IP、port等信息，并把它们写入到 iptables 规则链中。
+- client 访问 svc，其实访问的是 iptables 规则，再由 iptables 规则导向后端 pod 节点
+
+- service 在很多情况下只是一个概念，真正起作用的其实是 kube-proxy 服务进程
+- 当创建service 的时候，会通过 apiserver 向 etcd 写入创建的service的信息，而kube-proxy会基于监听机制发现service的变化，然后将最新的service信息转换为iptables规则，从而实现流量分发。
+
 
 
 ### 2.2 Endpoint
@@ -245,6 +299,7 @@ refer doc:
   - 使用Ingress，需要客户端访问域名能指向Ingress Controller所在host
   - 配置DNS服务器将kubia.example.com指向得到的IP
   - 或者在客户端 /etc/hosts 文件中配置。
+- Ingress，可以指向Service.
 
 ### 2.4 如何排除服务故障
 
@@ -258,15 +313,48 @@ refer doc:
 - 尝试直接连接到podIP以确认pod正在接收正确端口上的 连接。
 - 如果甚至无法通过pod的IP 访问应用， 请确保应用不是仅绑定 到本地主机。
 
-### 2.5 简单总结
+### 2.5 四种port：NodePort, Port, TargetPort, ContainerPort
 
-Service
+NodePort: 
+- nodePort提供了集群外部客户端访问service的一种方式，nodePort提供了集群外部客户端访问service的端口，
+- 即nodeIP:nodePort提供了外部流量访问k8s集群中service的入口。
+
+Port:
+- port是暴露在cluster ip上的端口，port提供了集群内部客户端访问service的入口，即clusterlP:port。
+
+TargetPort:
+- targetPort是pod上的端口，
+
+ContainerPort:
+- containerPort是在pod控制器中定义的、pod中的容器需要暴露的端口。
+- 如spring boot的8080，mysql的3306等。
+
+总结：
+- NodePort是kubernetes对外公布的一个和（某一个）service关联的端口，当外部流量到达这个nodePort时，service会将它导入port定义的端口上。
+- 然后，再从port定义的端口将流量导入到targetPort定义的端口。targetPort是容器对外暴露的端口，你可以理解为targetPort:containerPort。
+
+文档：
+- https://medium.com/@deepeshtripathi/all-about-kubernetes-port-types-nodeport-targetport-port-containerport-e9f447330b19
+
+
+### 2.6 基于客户端地址的会话保持模式的svc负载分发策略
+
+对Service的访问被分发到了后端的Pod上去，目前kubernetes提供了两种负载分发策略:
+- 如果不定义，默认使用kube-proxy的策略，比如轮询等。
+- 基于客户端地址的会话保持模式，即来自同一个客户端发起的所有请求都会转发到固定的一个Pod上
+  - 这对于传统基于Session的认证项目来说很友好，此模式可以在spec中添加sessionAffinity:ClientIP选项。
+
+
+### 2.6 简单总结
+
+Ingress: 指向service
+Service: 指向Endpoint
 - type:
   - ClusterIP
   - NodePort
   - LoadBalancer
   - ExternalName
-Endpoint
+Endpoint: 指向pods
 Pods
 - Probes:
   - readinessProbe
