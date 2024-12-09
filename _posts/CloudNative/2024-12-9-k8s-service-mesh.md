@@ -59,7 +59,7 @@ Istio, Conduit, Envoy, Linkerd
 
 
 文档：
-- [Service Mesh框架选型对比分析：Linkerd、Envoy、Istio、Conduit](http://www.mark-to-win.com/tutorial/50497.html)
+- Service Mesh框架选型对比分析：Linkerd、Envoy、Istio、Conduit: http://www.mark-to-win.com/tutorial/50497.html
 
 ### 4.1 Istio架构
 
