@@ -613,7 +613,103 @@ Pod 网络（Cluster CIDR）
   - [参考这里](https://kubernetes.io/zh-cn/docs/tasks/administer-cluster/migrating-from-dockershim/troubleshooting-cni-plugin-related-errors/)
 
 
-## OCI, CRI, CNI, CSI, CNM, CRD
+## 6 k8s的存储
+
+### 6.1 Volume
+
+- 一般来说，容器一旦被删除后，容器运行时内部产生的所有文件数据也会被清理掉,因此，Docker提供了 Volume 这种方式来将数据持久化存储。
+- 可以说，Volume 是Pod与外部存储设备进行数据传递的通道，Volume 也是Pod内部容器间、Pod与Pod间、Pod与外部环境进行数据共享的方式。
+
+- 实际上，这个 Volume 也只是宿主机上本地磁盘中的一个目录，也就是说，volume方式是将容器里面的数据都保存到宿主机上。
+- 除此之外，还能保存到外部存储上。
+
+在k8s中，支持多种类型的Volume:
+- 本地存储 (emptyDir / hostPath)
+- 外部存储(如NFS)。
+
+- emptyDir:
+  - 在创建pod时，emptyDir volume随着pod也会一同被创建出来。
+  - emptyDir volume 会在pod所在的node节点上生成一个空目录，而这个空目录的默认路径是在/var/lib/kubelet/pods/下。
+  - emptyDir Volume与Pod生命周期一致
+    - 只要Pod一直运行，该Volume就一直存在
+    - 而当Pod被删除时，该Volume也同时会删除，即Node 上对应目录也会被删掉。
+  - 一个Volume可被Pod中的所有容器共享，且可被挂载到容器的指定路径下
+
+- hostPath:
+  - 该类型是将Node上指定的文件或目录挂载到Pod中
+  - 当Pod被删除时，Node上对应的该Volume的文件或目录不会被删除，会保留下来，
+  - 从这点来看hostPath的持久性比emptyDir强.
+
+- 外部存储：
+  - 将数据存放在本地node节点上，对于无状态的deployment，会有问题
+  - 为了更安全，更一致，我们也可以将数据存储到外部的远程磁盘上，比如放到NFS服务器上
+
+### 6.2 PV/PVC
+
+PV:
+- 除了Volume之外，kubernetes 还提供了 Persistent Volume 的方法持久化数据.
+- 它与普通Volume的区别是，
+  - 普通Volume和Pod之间是种静态绑定关系，
+    - 也就是，在定义pod时，同时要将pod所使用的Volume一并定义好，Volume是Pod的附属品。
+    - volume会随着pod创建而被创建，我们无法单独创建一个Volume，因为它不是一个独立的K8S资源对象。
+  - 而Persistent Volume则是一个K8S资源对象，它是独立于Pod的，能单独创建
+    - Persistent Volume 不与Pod发生直接关系，而是通过 Persistent Volume Claim(PVC)来与Pod绑定关系。
+    - 在定义Pod时，为Pod指定一个PVC，Pod在创建时会根据PVC要求，从现有集群的PV中，选择一个合适的PV绑定，或动态建立一个新的PV，再与其进行绑定
+
+Persistent Volume(PV): 
+- 用于定义各种存储资源的配置信息，一个PV对应一个volume，定义一个PV内容包括了 存储类型、存储大小和访问模式等。
+Persistent Volume Claim(PVC): 
+- 描述对PV的一个请求。请求信息包含存储大小、访问模式等。
+- PVC只会选择符合自己要求的PV进行绑定，然后在定义pod时指定使用哪个PVC就可以了。
+
+在提交PVC后，是如何找到对应的PV: 
+- 先根据PVC的accessModes匹配出PV列表，
+- 再根据PVC的Capacity、StorageClassName、Label Selector进一步筛选PV。
+- 如果满足条件的PV有多个，选择PV的size最小的，accessmodes列表最短的PV，也即最小适合原则。
+- 也就是说，PVC绑定PV的过程是有一定规则的.
+
+PV类型:
+- 一般来说，PV又有多种类型: Static PV(静态)、Dynamic PV(动态)、Local PV(本地)。
+- PV持久卷是用插件的形式来实现的。Kubernetes 目前支持以下插件:
+  - [k8s支持的持久卷的类型](https://kubernetes.io/zh-cn/docs/concepts/storage/persistent-volumes/#types-of-persistent-volumes)
+
+Static/Dynamic PV: 静态和动态PV
+- PV创建虽是由运维人员完成的，但在一个大规模的Kubernetes集群里，很可能有成千上万个PVC，这就意味着运维人员必须得事先创建出成千上万个PV，如果单纯靠人工来管理，会存在一定的困难。
+- Kubernetes提供了一套可以自动创建PV的机制，即DynamicVolume Provisioning(动态PV)
+- 而手动创建并管理的PV叫做Static Volume Provisioning(静态PV)
+
+Dynamic PV创建机制的核心，在于一个名为StorageClass的API对象，它是一个用于创建PV的模板.
+- 在YAML文件中定义PVC时，需要指定一个StorageClass名称，
+  - 然后等到用户要创建这个PVC时，系统会根据PVC定义的需求，并参考StorageClass的存储细节，
+  - 最后通过调用StorageClass声明的存储插件(Provisioner) ，动态创建出需要的PV。
+- 所以，在声明一个PVC时：
+  - 如果在PVC中添加了StorageClassName字段，那就意味着，
+  - 当PVC在集群中找不到匹配的PV时，它会根据StorageClassName的定义，触发相应的Provisioner插件创建出合适的PV进行绑定。
+  - 也就是说，现在无需事先创建好将来要用到的PV，只要通过StorageClass准备好一些PV模板，
+  - 等到将来要使用时，PVC再直接使用StorageClass定义好的PV模板，调用存储插件将PV一并创建出来就可以。
+
+StorageClass:
+- Kubernetes提供了一套可以自动创建PV的机制，即: Dynamic Provisioning。而这个机制的核心在于StorageClass这个API对象。
+- StorageClass对象会定义下面两部分内容:
+  - 1.PV的属性。比如，存储类型，Volume的大小等.
+  - 2.创建这种PV需要用到的存储插件，即存储制备器.
+- 有了这两个信息之后，Kubernetes就能够根据用户提交的PVC，找到一个对应的StorageClass，之后Kubernetes就会调用该StorageClass声明的存储插件，进而创建出需要的PV。
+- 文档：
+  - [存储类-制备器](https://kubernetes.io/zh-cn/docs/concepts/storage/storage-classes/#provisioner)
+
+
+Local PV:
+- 一般不建议使用，因为：
+  - 1，不应该随便把node上的任何一个目录当作PV使用，因为不安全，**应该额外挂载一个外部磁盘到node上**，也就是，一个PV对应一块外部数据盘。
+  - 2，调度器要保证Pod始终能被正确地调度到它所请求的Local PV所在的节点上，那调度器就要知道所有node与local pv的关联关系，即PV的位置分布信息 (也叫存储拓扑信息)，然后根据这个位置信息来调度Pod。
+
+
+
+
+
+
+
+## 7 OCI, CRI, CNI, CSI, CNM, CRD
 
 首先我们来看一张图
 
