@@ -3,6 +3,7 @@ layout: post
 title: 【PS】基础篇02：PS基础
 categories: [SelfMedia, PS]
 tags: [图层, 选区, 套索, 魔法工具, 历史记录]
+published: false
 ---
 
 ## 1 图层

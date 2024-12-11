@@ -3,6 +3,7 @@ layout: post
 title: 【PS】基础篇03：编辑图片
 categories: [SelfMedia, PS]
 tags: [画笔, 橡皮, 修复, 填充, 自由变换]
+published: false
 ---
 
 ## 1 画笔工具

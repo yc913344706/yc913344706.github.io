@@ -3,6 +3,7 @@ layout: post
 title: 【PS】基础篇04：通道、蒙版
 categories: [SelfMedia, PS]
 tags: [通道, 蒙版]
+published: false
 ---
 
 ## 1 通道

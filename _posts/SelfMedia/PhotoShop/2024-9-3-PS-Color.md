@@ -3,6 +3,7 @@ layout: post
 title: 【PS】基础篇05：色彩基础
 categories: [SelfMedia, PS]
 tags: [色彩]
+published: false
 ---
 
 ## 1. 颜色基础

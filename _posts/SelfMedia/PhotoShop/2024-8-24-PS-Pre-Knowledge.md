@@ -3,6 +3,7 @@ layout: post
 title: 【PS】01 基础篇01：预置知识
 categories: [SelfMedia, PS]
 tags: [PS主界面, 分辨率]
+published: false
 ---
 
 ## 1 学习PS的核心逻辑
