@@ -17,6 +17,31 @@ tags: []
 为了更好地解决Pod编排的问题：
 - k8s在V1.2版本开始，引入了deployment资源对象
 
+## ReplicaController, ReplicaSet
+
+### ReplicaController
+
+- Replication controller 简称 RC，RC是Kubernetes 系统中的核心概念之一，
+- 简单来说，RC可以保证在任意时间运行 Pod 的副本数量，能够保证 Pod 总是可用的。
+- 如果实际 Pod 数量比指定的多，那就干掉多余的，如果实际数量比指定的少就新启动一些 Pod，当 Pod 失败、被删除或者挂掉后，RC 都会去自动创建新的 Pod 来保证副本数量，
+- 所以生产场景中，哪怕只有一个pod，也应该使用 RC 来管理我们的 Pod。
+- 就是由于RC的副本控制机制，哪怕运行 Pod 的节点挂了，RC 检测到 Pod 失败了，就会去合适的节点重新启动一个 Pod 就行，不需要我们手动去新建一个 Pod 了。
+
+### ReplicaSet
+
+- Replication Set 简称 RS，随着Kubernetes 的高速发展，官方已经推荐我们使用 RS 和Deployment来代替RC了，
+- 实际上 RS和RC 的功能基本一致，目前唯一的一个区别就是 RC 只支持基于等式的 selector (env=dev或 environment!=qa)，
+- 但 RS 还支持基于集合的 selector (version in(v1.0,v2.0)) ，这对复杂的运维管理就非常方便了。
+
+- kubectl 命令行工具中关于 RC 的大部分命令同样适用于我们的 RS 资源对象
+- 不过我们也很少会去单独使用 RS，它主要被 Deployment 这个更加高层的资源对象使用，
+- 除非用户需要自定义升级功能或根本不需要升级 Pod，在一般情况下，我们推荐使用 Deplovment而不直接使用Replica Set.
+
+### 总结
+
+- 随着Kubernetes 的高速发展，官方已经推荐我们使用 RS 和Deployment来代替RC了，
+- 不过我们也很少会去单独使用 RS，它主要被 Deployment 这个更加高层的资源对象使用
+
 ## deployment
 
 注意:
@@ -63,31 +88,6 @@ Deployment 使用场景:
 ### deployment 进行灰度发布
 
 MARK: wait to complete.
-
-## ReplicaController, ReplicaSet
-
-### ReplicaController
-
-- Replication controller 简称 RC，RC是Kubernetes 系统中的核心概念之一，
-- 简单来说，RC可以保证在任意时间运行 Pod 的副本数量，能够保证 Pod 总是可用的。
-- 如果实际 Pod 数量比指定的多，那就干掉多余的，如果实际数量比指定的少就新启动一些 Pod，当 Pod 失败、被删除或者挂掉后，RC 都会去自动创建新的 Pod 来保证副本数量，
-- 所以生产场景中，哪怕只有一个pod，也应该使用 RC 来管理我们的 Pod。
-- 就是由于RC的副本控制机制，哪怕运行 Pod 的节点挂了，RC 检测到 Pod 失败了，就会去合适的节点重新启动一个 Pod 就行，不需要我们手动去新建一个 Pod 了。
-
-### ReplicaSet
-
-- Replication Set 简称 RS，随着Kubernetes 的高速发展，官方已经推荐我们使用 RS 和Deployment来代替RC了，
-- 实际上 RS和RC 的功能基本一致，目前唯一的一个区别就是 RC 只支持基于等式的 selector (env=dev或 environment!=qa)，
-- 但 RS 还支持基于集合的 selector (version in(v1.0,v2.0)) ，这对复杂的运维管理就非常方便了。
-
-- kubectl 命令行工具中关于 RC 的大部分命令同样适用于我们的 RS 资源对象
-- 不过我们也很少会去单独使用 RS，它主要被 Deployment 这个更加高层的资源对象使用，
-- 除非用户需要自定义升级功能或根本不需要升级 Pod，在一般情况下，我们推荐使用 Deplovment而不直接使用Replica Set.
-
-### 总结
-
-- 随着Kubernetes 的高速发展，官方已经推荐我们使用 RS 和Deployment来代替RC了，
-- 不过我们也很少会去单独使用 RS，它主要被 Deployment 这个更加高层的资源对象使用
 
 ## DaemonSet
 
@@ -233,7 +233,7 @@ CronJob:
 - 在给定时间点，只运行一次周期性的定时运行(数据库备份、发送邮件)
 - 一个CronJob 对象类似于 crontab (cron table) 文件中的一行记录
 
-## HPA(Horizontal Pod Autoscaling)水平自动伸缩
+## HPA(Horizontal Pod Autoscaling)水平自动伸缩, VPA
 
 HPA使Pod水平自动缩放,不再需要手动扩容
 

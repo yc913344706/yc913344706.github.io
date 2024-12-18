@@ -715,12 +715,6 @@ Local PV:
 
 ![09-worker架构图](/assets/images/Cloud-Native/02-k8s-macro-architecture/09-worker架构图.png)
 
-
-|缩写| 描述|
-|:----|:----|
-|CNI|- CNI 就是这样一个标准，它旨在为容器平台提供**网络的标准**化。<br/>- 不同的容器平台能够通过相同的接口调用不同的网络组件。|
-
-
 OCI (Open Container Initiative)：
 - 容器开放接口规范，
 - 由多家公司共同组成于2015年6月成立的项目 (Docker,Google,CoreOS等公司)，并由Linux基金会运行管理，

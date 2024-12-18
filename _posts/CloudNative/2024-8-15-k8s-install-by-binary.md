@@ -1172,6 +1172,9 @@ helm ls
 
 ### 10.7 【master-143】CoreDNS
 
+coredns作用：
+- 在集群内提供Service和Pod的域名解析服务。
+
 coredns版本选择：
 - https://kubernetes.io/docs/tasks/administer-cluster/coredns/
 - key words: `Your Kubernetes server must be at or later than version v1.9.`
